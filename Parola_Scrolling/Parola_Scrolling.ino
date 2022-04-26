@@ -33,7 +33,7 @@ typedef struct
   char  name[10];
   MD_MAX72XX::fontType_t *pFont;
   textEffect_t effect;
-  char pMsg[75];
+  char pMsg[100];
 } message_t;
 
 uint8_t scrollSpeed = 40;    // default frame delay value
@@ -42,9 +42,25 @@ textPosition_t scrollAlign = PA_LEFT;
 uint16_t scrollPause = 500; // in milliseconds
 
 // Global message buffers shared by Serial and Scrolling functions
+char language[15][100] = 
+{
+  "Kabu da Nigeria", //Bassa Nge
+  "Ola'le Nigeria", //Igala
+  "Aooo Nigeria", //Ondo
+  "Una Wekom to Naija", //Pidgin
+  "Barka da zuma Nigeria", //Hausa
+  "Alua Nigeria", //Ika
+  "Anyaowa Nigeria", //Idoma
+  "E kurabo hi ile Inaigiriya", //Yagba
+  "Msugh da van ken Najeriya", //Tiv
+  "Elua Nigeria", //Igbo (Bende)
+  "Amedi Nigeria", //Ibibio
+  "Awonke Nigeria", //Yakurr
+  "Mbaa nyin kankrang njt" //Jju 
+};
 message_t M =
 {
-  "All", allFont, PA_SCROLL_LEFT, "QWERTYBNMVP\x0C1\x0C0\x001\x0D3"
+  "All", allFont, PA_SCROLL_LEFT, "Welcome to Nigeria"
 };
 
 void setup()
@@ -58,10 +74,12 @@ void loop()
 {
   if(P.displayAnimate())
   {
+    static int i;
     P.setTextBuffer(M.pMsg);
     P.setTextEffect(M.effect, M.effect);
     P.displayReset();
-    strcpy(M.pMsg,"\x0C1\x0C0");   
+    strcpy(M.pMsg,language[i%15]); 
+    i++;   
   }
 }
 
