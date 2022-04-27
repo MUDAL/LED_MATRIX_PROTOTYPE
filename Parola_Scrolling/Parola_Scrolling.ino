@@ -1,17 +1,6 @@
 // Use the Parola library to scroll text on the display
-//
-// Demonstrates the use of the scrolling function to display text received
-// from the serial interface
-//
-// User can enter text on the serial monitor and this will display as a
-// scrolling message on the display.
-// Speed for the display is controlled by a pot on SPEED_IN analog in.
-// Scrolling direction is controlled by a switch on DIRECTION_SET digital in.
-// Invert ON/OFF is set by a switch on INVERT_SET digital in.
-//
-// UISwitch library can be found at https://github.com/MajicDesigns/MD_UISwitch
+// Demonstrates the use of the scrolling function to display text
 // MD_MAX72XX library can be found at https://github.com/MajicDesigns/MD_MAX72XX
-//
 
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
@@ -30,22 +19,23 @@ MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 typedef struct
 {
-  char  name[10];
+  char name[10];
   MD_MAX72XX::fontType_t *pFont;
   textEffect_t effect;
   char pMsg[100];
 } message_t;
 
-uint8_t scrollSpeed = 40;    // default frame delay value
+uint8_t scrollSpeed = 40; // default frame delay value
 textEffect_t scrollEffect = PA_SCROLL_LEFT;
 textPosition_t scrollAlign = PA_LEFT;
-uint16_t scrollPause = 500; // in milliseconds
-
-// Global message buffers shared by Serial and Scrolling functions
-char language[15][100] = 
+uint16_t scrollPause = 1000; // in milliseconds
+//Languages
+static  char language[50][100] = 
 {
+  "Welcome to Nigeria", //English
   "Kabu da Nigeria", //Bassa Nge
   "Ola'le Nigeria", //Igala
+  "\x0FE k\x0E1\x0E0\x062\x0FF s\x0ED N\x0E0\x0ECj\x0EDr\x0ED\x0E0", //Yoruba
   "Aooo Nigeria", //Ondo
   "Una Wekom to Naija", //Pidgin
   "Barka da zuma Nigeria", //Hausa
@@ -58,9 +48,10 @@ char language[15][100] =
   "Awonke Nigeria", //Yakurr
   "Mbaa nyin kankrang njt" //Jju 
 };
+//Global message buffer shared by Serial and Scrolling functions
 message_t M =
 {
-  "All", allFont, PA_SCROLL_LEFT, "Welcome to Nigeria"
+  "All", customFont, PA_SCROLL_LEFT, ""
 };
 
 void setup()

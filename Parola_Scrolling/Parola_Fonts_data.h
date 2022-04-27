@@ -1,7 +1,7 @@
 // Data file for user example user defined fonts
 #pragma once
 
-MD_MAX72XX::fontType_t PROGMEM allFont[] =
+MD_MAX72XX::fontType_t PROGMEM customFont[] =
 {
   'F', 2, 0, 0, 0, 255, 8,
   0,    // 0 - 'Empty Cell'
@@ -259,8 +259,8 @@ MD_MAX72XX::fontType_t PROGMEM allFont[] =
   4, 56, 64, 66, 121,   // 250 - 'ú Latin Small Letter U with acute'
   4, 56, 66, 65, 122,   // 251 - 'û Latin Small Letter U with circumflex'
   4, 58, 64, 64, 122,   // 252 - 'ü Latin Small Letter U with diaeresis'
-  4, 24, 160, 162, 121,   // 253 - 'ý Latin Small Letter Y with acute'
-  4, 252, 40, 40, 16,   // 254 - 'þ Latin Small Letter Thorn'
-  4, 26, 160, 160, 122,   // 255 - 'ÿ Latin Small Letter Y with diaeresis'
+  4, 24, 160, 162, 121,   // 253 - 'ý Latin Small Letter Y with acute' 
+  5, 127,73,201,73,65, //254 -  Ẹ Yoruba 
+  5, 56,69,198,68,56 //255 - ò Yoruba
 };
 
