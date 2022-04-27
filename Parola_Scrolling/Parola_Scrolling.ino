@@ -7,9 +7,10 @@
 #include <SPI.h>
 #include "Parola_Fonts_data.h"
 
+#define NUM_OF_LANG 50 //50 languages
+
 #define HARDWARE_TYPE MD_MAX72XX::FC16_HW
 #define MAX_DEVICES 8
-
 #define CLK_PIN   18
 #define DATA_PIN  23
 #define CS_PIN     5
@@ -30,7 +31,7 @@ textEffect_t scrollEffect = PA_SCROLL_LEFT;
 textPosition_t scrollAlign = PA_LEFT;
 uint16_t scrollPause = 1000; // in milliseconds
 //Languages
-static  char language[50][100] = 
+static  char language[NUM_OF_LANG][100] = 
 {
   "Welcome to Nigeria", //English
   "Kabu da Nigeria", //Bassa Nge
@@ -66,11 +67,18 @@ void loop()
   if(P.displayAnimate())
   {
     static int i;
-    P.setTextBuffer(M.pMsg);
-    P.setTextEffect(M.effect, M.effect);
-    P.displayReset();
-    strcpy(M.pMsg,language[i%15]); 
-    i++;   
+    if(strcmp(language[i%NUM_OF_LANG],"") != 0)
+    {
+      P.setTextBuffer(M.pMsg);
+      P.setTextEffect(M.effect, M.effect);
+      P.displayReset();
+      strcpy(M.pMsg,language[i%NUM_OF_LANG]);  
+      i++; 
+    }
+    else
+    {//if no new language, restart display from first language
+      i = 0;
+    }  
   }
 }
 
