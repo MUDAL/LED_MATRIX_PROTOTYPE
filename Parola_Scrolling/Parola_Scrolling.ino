@@ -26,10 +26,10 @@ typedef struct
   char pMsg[100];
 } message_t;
 
-uint8_t scrollSpeed = 40; // default frame delay value
+uint8_t scrollSpeed = 70; // default frame delay value
 textEffect_t scrollEffect = PA_SCROLL_LEFT;
-textPosition_t scrollAlign = PA_LEFT;
-uint16_t scrollPause = 1000; // in milliseconds
+textPosition_t scrollAlign = PA_CENTER;
+uint16_t scrollPause = 400; // in milliseconds
 //Languages
 static  char language[NUM_OF_LANG][100] = 
 {
