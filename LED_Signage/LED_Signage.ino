@@ -67,12 +67,12 @@ void loop()
   if(signage.displayAnimate())
   {
     static int i;
-    if(strcmp(language[i%NUM_OF_LANG],"") != 0)
+    if(strcmp(language[i % NUM_OF_LANG],"") != 0)
     {
       signage.setTextBuffer(M.pMsg);
       signage.setTextEffect(M.effect,M.effect);
       signage.displayReset();
-      strcpy(M.pMsg,language[i%NUM_OF_LANG]);  
+      strcpy(M.pMsg,language[i % NUM_OF_LANG]);  
       i++; 
     }
     else
