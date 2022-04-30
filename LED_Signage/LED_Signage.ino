@@ -50,7 +50,7 @@ static  char language[NUM_OF_LANG][100] =
   "Mbaa nyin kankrang njt" //Jju 
 };
 //Global message buffer  
-message_t M =
+message_t msgBuff =
 {
   "All", customFont, PA_SCROLL_LEFT, ""
 };
@@ -58,8 +58,8 @@ message_t M =
 void setup()
 {
   signage.begin();
-  signage.setFont(M.pFont);
-  signage.displayText(M.pMsg, scrollAlign, scrollSpeed, scrollPause, scrollEffect, scrollEffect);
+  signage.setFont(msgBuff.pFont);
+  signage.displayText(msgBuff.pMsg, scrollAlign, scrollSpeed, scrollPause, scrollEffect, scrollEffect);
 }
 
 void loop()
@@ -69,10 +69,10 @@ void loop()
     static int i;
     if(strcmp(language[i % NUM_OF_LANG],"") != 0)
     {
-      signage.setTextBuffer(M.pMsg);
-      signage.setTextEffect(M.effect,M.effect);
+      signage.setTextBuffer(msgBuff.pMsg);
+      signage.setTextEffect(msgBuff.effect,msgBuff.effect);
       signage.displayReset();
-      strcpy(M.pMsg,language[i % NUM_OF_LANG]);  
+      strcpy(msgBuff.pMsg,language[i % NUM_OF_LANG]);  
       i++; 
     }
     else
