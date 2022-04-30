@@ -16,7 +16,7 @@
 #define CS_PIN     5
 
 // HARDWARE SPI
-MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
+MD_Parola signage = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 typedef struct
 {
@@ -49,7 +49,7 @@ static  char language[NUM_OF_LANG][100] =
   "Awonke Nigeria", //Yakurr
   "Mbaa nyin kankrang njt" //Jju 
 };
-//Global message buffer shared by Serial and Scrolling functions
+//Global message buffer  
 message_t M =
 {
   "All", customFont, PA_SCROLL_LEFT, ""
@@ -57,21 +57,21 @@ message_t M =
 
 void setup()
 {
-  P.begin();
-  P.setFont(M.pFont);
-  P.displayText(M.pMsg, scrollAlign, scrollSpeed, scrollPause, scrollEffect, scrollEffect);
+  signage.begin();
+  signage.setFont(M.pFont);
+  signage.displayText(M.pMsg, scrollAlign, scrollSpeed, scrollPause, scrollEffect, scrollEffect);
 }
 
 void loop()
 {
-  if(P.displayAnimate())
+  if(signage.displayAnimate())
   {
     static int i;
     if(strcmp(language[i%NUM_OF_LANG],"") != 0)
     {
-      P.setTextBuffer(M.pMsg);
-      P.setTextEffect(M.effect, M.effect);
-      P.displayReset();
+      signage.setTextBuffer(M.pMsg);
+      signage.setTextEffect(M.effect,M.effect);
+      signage.displayReset();
       strcpy(M.pMsg,language[i%NUM_OF_LANG]);  
       i++; 
     }
