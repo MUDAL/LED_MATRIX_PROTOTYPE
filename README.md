@@ -1,7 +1,7 @@
 # LED_MATRIX_PROTOTYPE  
 
 This project was developed for the **Hardware Things** competition I participated. My teammates were  
-**Oluwasegun Adedigba** and **Adeboye Oyeniyi**. The prototype involves an ESP32 dev board and an two  
+**Oluwasegun Adedigba** and **Adeboye Oyeniyi**. The prototype involves an ESP32 dev board and two    
 LED matrix modules. Each module has four 8x8 LED matrices cascaded. The aim of the project was to display  
 **Welcome to Nigeria** in 16 different Nigerian languages.  
 
